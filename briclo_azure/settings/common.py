@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     #third party
+    'bootstrap3',
+    #local
+    'product',
+    'home',
+    'accounts',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -55,7 +61,7 @@ ROOT_URLCONF = 'briclo_azure.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templaes'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,3 +130,5 @@ STATIC_ROOT = join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
 
+
+LOGIN_REDIRECT_URL = '/'

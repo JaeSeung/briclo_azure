@@ -1,4 +1,4 @@
-"""briclo_azure URL Configuration
+"""sharecloset URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
@@ -13,21 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf import settings
-from django.conf.urls import url
-from django.conf.urls.static import static
+from django.conf.urls import url, include
 from django.contrib import admin
-from django.http import HttpResponse
-
-def hello(request):
-    return HttpResponse('''
-        <h1>Hello, <a href="http://facebook.com/askdjango/" target="_blank">AskDjango</a></h1>
-    ''')
+from django.conf import settings
+from django.conf.urls.static import static
+from django.shortcuts import redirect
+from product.views import *
+from home.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$' , hello),
+    url(r'^$', intro, name="intro"),
+    url(r'^team/', include('home.urls', namespace="home")),
+    url(r'^product/', include('product.urls', namespace="product")),
+    url(r'^accounts/', include('accounts.urls')),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
